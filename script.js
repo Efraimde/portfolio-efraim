@@ -2,6 +2,7 @@ const assistenteAvatar = document.getElementById("assistente-avatar");
 const chatModal = document.getElementById("chat-modal");
 const assistenteBody = document.getElementById("assistente-body");
 const userInput = document.getElementById("user-input");
+const fecharChat = document.getElementById("fechar-chat");
 
 const respostas = {
   "sites": "Eu desenvolvo sites modernos, responsivos e rápidos, adaptados a qualquer dispositivo.",
@@ -17,6 +18,11 @@ const respostas = {
 assistenteAvatar.addEventListener("click", () => {
   chatModal.style.display = chatModal.style.display === "flex" ? "none" : "flex";
   userInput.focus();
+});
+
+// Fechar chat
+fecharChat.addEventListener("click", () => {
+  chatModal.style.display = "none";
 });
 
 // Enviar mensagem
@@ -45,8 +51,7 @@ function responderAssistente(texto) {
   let resposta = chave ? respostas[chave] : respostas["outros"];
   adicionarMensagem("Assistente digitando...", "assistente-msg");
   setTimeout(() => {
-    // Remove "digitando..."
-    assistenteBody.lastChild.remove();
+    assistenteBody.lastChild.remove(); // Remove "digitando..."
     adicionarMensagem(resposta, "assistente-msg");
   }, 1000);
 }
