@@ -3,6 +3,7 @@ const chatModal = document.getElementById("chat-modal");
 const assistenteBody = document.getElementById("assistente-body");
 const userInput = document.getElementById("user-input");
 const fecharChat = document.getElementById("fechar-chat");
+const copiarLinkBtn = document.getElementById("copiar-link");
 
 const respostas = {
   "sites": "Eu desenvolvo sites modernos, responsivos e rápidos, adaptados a qualquer dispositivo.",
@@ -64,4 +65,12 @@ document.querySelectorAll(".card").forEach(card => {
     userInput.focus();
     responderAssistente(servico);
   });
+});
+
+// Copiar link do QR Code
+copiarLinkBtn.addEventListener("click", () => {
+  const link = window.location.href;
+  navigator.clipboard.writeText(link)
+    .then(() => alert("Link copiado para a área de transferência!"))
+    .catch(() => alert("Erro ao copiar o link."));
 });
